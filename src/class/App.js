@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../App.css';
 
 
 class App extends Component {
@@ -37,7 +37,7 @@ class Salle extends Component {
         if(this.state.occupied === false){
             return (
                 <div  className="row">
-                        <div className="card light-green col s6 m6" style={this.styleOccupied}>
+                        <div className="card light-green col s6 offset-s3 offset-m3 m6" style={this.styleOccupied}>
                             <div className="card-content white-text">
                                 <span className="card-title">Card Title</span>
                                 <p>{this.name}</p>
@@ -48,7 +48,7 @@ class Salle extends Component {
         }else{
             return (
                 <div className="row">
-                      <div className="card red col s6 m6" style={this.styleEmpty}>
+                      <div className="card red col s6 offset-s3 offset-m3 m6" style={this.styleEmpty}>
                         <div className="card-content white-text">
                             <span className="card-title">Card Title</span>
                             <p>{this.name}</p>
