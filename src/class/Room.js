@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PolarGantt } from '../clock/clock.js';
+
 import logo from '../logo.svg';
 import '../App.css';
 import '../clock/clock.scss'
@@ -18,12 +18,14 @@ class Room extends Component {
             </div>
         );
     }
+
+    componentWillMount() {
+    }
 }
 
 class Clock extends Component {
     constructor(props){
         super(props);
-        this.polarGantt = new PolarGantt();
     }
     render(){
         return (
