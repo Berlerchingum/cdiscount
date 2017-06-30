@@ -11,7 +11,7 @@ const RouterMapping = () => (
     <Router>
         <switch>
             <Route exact path="/" component={App} />
-            <Route path='/salle/:id' component={Room} />
+            <Route path='/salle/:etageId/:salleId' component={Room} />
         </switch>
     </Router>
 );

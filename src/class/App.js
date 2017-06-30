@@ -6,21 +6,21 @@ import '../App.css';
 
 let listeSalle1 = [
     {
-        id: 1,
+        id: 0,
         idEtage: 0,
         nom: "salle 1",
         state: false,
         slot: new Date(),
     },
     {
-        id: 2,
+        id: 1,
         idEtage: 0,
         nom: "salle 2",
         state: true,
         slot: new Date(),
     },
     {
-        id: 3,
+        id: 2,
         idEtage: 0,
         nom: "salle 3",
         state: false,
@@ -104,7 +104,6 @@ class App extends Component {
         </div>
         <p className="App-intro">
         </p>
-          {/*<List />*/}
           <ListEtage />
       </div>
     );
@@ -120,7 +119,7 @@ class Etage extends Component {
         this.salles = props.listeSalles;
         this.salles.forEach( (salle) => {
             this.listeSalles.push(
-                <Salle id={salle.id} state={salle.state} name={salle.nom} slot={salle.slot} />
+                <Salle id={salle.id} state={salle.state} name={salle.nom} etageId={salle.idEtage} slot={salle.slot} />
             )
         })
     }
@@ -137,9 +136,7 @@ class Etage extends Component {
             </div>
         );
     }
-
 }
-
 
 class Salle extends Component {
     constructor(props){
@@ -148,6 +145,7 @@ class Salle extends Component {
         this.name = props.name;
         this.slot = props.slot;
         this.id = props.id;
+        this.etageId = props.etageId;
         this.styleEmpty = {
             backgroundColor: 'lightgreen',
         };
@@ -156,7 +154,7 @@ class Salle extends Component {
         };
     }
     render(){
-        let text = "/salle/"+ this.id;
+        let text = "/salle/"+ this.etageId +"/"+ this.id;
         if(this.state.occupied === false){
             return (
                 <Link to={text}>
