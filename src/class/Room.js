@@ -134,26 +134,52 @@ class Room extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                                <td id="9"></td>
-                                <td id="10"></td>
-                                <td id="11"></td>
-                                <td id="12"></td>
-                                <td id="13"></td>
-                                <td id="14"></td>
-                                <td id="15"></td>
-                                <td id="16"></td>
-                                <td id="17"></td>
-                                <td id="18"></td>
-                                <td id="19"></td>
-                                <td id="20"></td>
+                                <td className="red" id="9"></td>
+                                <td className="red" id="10"></td>
+                                <td className="green" id="11"></td>
+                                <td className="green" id="12"></td>
+                                <td className="green"id="13"></td>
+                                <td className="green" id="14"></td>
+                                <td className="red" id="15"></td>
+                                <td className="red" id="16"></td>
+                                <td className="green" id="17"></td>
+                                <td className="red" id="18"></td>
+                                <td className="red" id="19"></td>
+                                <td className="red" id="20"></td>
                         </tbody>
                     </table>
+                </div>
+                <div className="row">
+                    <form className="container">
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="start" type="text" className="validate"/>
+                                <label for="email">Horaires de début</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="end" type="text" className="validate"/>
+                                <label for="email">Horaires de fin</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="email" type="email" className="validate"/>
+                                    <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div>
+                            <a className="waves-effect waves-light btn">Réserver</a>
+                        </div>
+                    </form>
+                </div>
+                <div className="row">
                     <button className="waves-effect waves-light btn" onClick={this.activateToaster}>Demander plus de matériel</button>
                 </div>
             </div>
         );
     }
-
 }
 
 
@@ -189,10 +215,6 @@ class SalleDetail extends Component {
                     </div>
             );
         }
-    }
-
-    componentWillMount(){
-
     }
 }
 
