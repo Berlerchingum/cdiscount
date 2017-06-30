@@ -9,8 +9,32 @@ class Room extends Component {
     activateAsk() {
         alert('Réservation effectuée !')
     }
+    componentWillMount(){
+
+    }
     render() {
+        // l'idée est de récupérer les donnnees du json à partir des paramètres fournis par la route :etageId et :salleId
+        // On a choisi d'afficher la timeline au travers d'un tableau afin de faciliter le remplissage
         let salle = data[this.props.match.params.etageId].salles[this.props.match.params.salleId];
+        let hoursList = [];
+        for(let i = 9; i <= 20; i++){
+            let occupied = false;
+            salle.slot.forEach( (slot) => {
+                // tant que la place n'est pas occupé on boucle, si elle est occupé plus de raison de boucler sur les slots
+                if(occupied == false){
+                    if(i == parseInt(slot.start.format('HH')) || (i < parseInt(slot.end.format('HH')) && i > parseInt(slot.start.format('HH'))) || i == parseInt(slot.end.format('HH'))){
+                        occupied = true;
+                    }
+                    else
+                        occupied = false;
+                }
+            });
+            if(occupied == false){
+                hoursList.push(<td className="green"></td>);
+            }
+            else
+                hoursList.push(<td className="red"></td>);
+        }
         return (
             <div className="App">
                 <div className="row">
@@ -20,33 +44,24 @@ class Room extends Component {
                     <table className="responsive-table">
                         <thead>
                             <tr>
-                                <th>9:00</th>
-                                <th>10:00</th>
-                                <th>11:00</th>
-                                <th>12:00</th>
-                                <th>13:00</th>
-                                <th>14:00</th>
-                                <th>15:00</th>
-                                <th>16:00</th>
-                                <th>17:00</th>
-                                <th>18:00</th>
-                                <th>19:00</th>
-                                <th>20:00</th>
+                                <th className="center">9:00</th>
+                                <th className="center">10:00</th>
+                                <th className="center">11:00</th>
+                                <th className="center">12:00</th>
+                                <th className="center">13:00</th>
+                                <th className="center">14:00</th>
+                                <th className="center">15:00</th>
+                                <th className="center">16:00</th>
+                                <th className="center">17:00</th>
+                                <th className="center">18:00</th>
+                                <th className="center">19:00</th>
+                                <th className="center">20:00</th>
                             </tr>
                         </thead>
                         <tbody>
-                                <td className="red" id="9"></td>
-                                <td className="red" id="10"></td>
-                                <td className="green" id="11"></td>
-                                <td className="green" id="12"></td>
-                                <td className="green"id="13"></td>
-                                <td className="green" id="14"></td>
-                                <td className="red" id="15"></td>
-                                <td className="red" id="16"></td>
-                                <td className="green" id="17"></td>
-                                <td className="red" id="18"></td>
-                                <td className="red" id="19"></td>
-                                <td className="red" id="20"></td>
+                                <tr>
+                                    {hoursList}
+                                </tr>
                         </tbody>
                     </table>
                 </div>
@@ -55,19 +70,19 @@ class Room extends Component {
                         <div className="row">
                             <div className="input-field col s12">
                                 <input id="start" type="text" className="validate"/>
-                                <label for="email">Horaires de début</label>
+                                <label htmlFor="email">Horaires de début</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
                                 <input id="end" type="text" className="validate"/>
-                                <label for="email">Horaires de fin</label>
+                                <label htmlFor="email">Horaires de fin</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
                                 <input id="email" type="email" className="validate"/>
-                                    <label for="email">Email</label>
+                                    <label htmlFor="email">Email</label>
                             </div>
                         </div>
                         <div className="row">
@@ -102,7 +117,8 @@ class SalleDetail extends Component {
             backgroundColor: 'red',
         };
     }
-
+    componentWillMount(){
+    }
     render() {
         if (this.state.occupied === false) {
             return (

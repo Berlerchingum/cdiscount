@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import App from './class/App';
 import Room from './class/Room';
 
-
+// Routing
 const RouterMapping = () => (
     <Router>
         <switch>

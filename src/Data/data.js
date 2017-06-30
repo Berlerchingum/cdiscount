@@ -1,5 +1,7 @@
 import moment from 'moment'
 
+// Ici sont les données json Un étage possède une liste de salles, une salles possède une lise de rendez-vous
+
 let listeSlot1 = [
     {
         start: new moment("2017-06-30 10:00"),
@@ -10,6 +12,34 @@ let listeSlot1 = [
         end: new moment("2017-06-30 17:00"),
     }
 ];
+
+let listeSlot2 = [
+    {
+        start: new moment("2017-06-30 9:00"),
+        end: new moment("2017-06-30 11:00"),
+    },
+    {
+        start: new moment("2017-06-30 12:00"),
+        end: new moment("2017-06-30 15:00"),
+    },
+    {
+        start: new moment("2017-06-30 15:00"),
+        end: new moment("2017-06-30 20:00"),
+    }
+];
+
+let listeSlot3 = [
+    {
+        start: new moment("2017-06-30 12:00"),
+        end: new moment("2017-06-30 15:00"),
+    },
+    {
+        start: new moment("2017-06-30 15:00"),
+        end: new moment("2017-06-30 20:00"),
+    }
+];
+
+
 let listeSalle1 = [
     {
         id: 0,
@@ -23,14 +53,14 @@ let listeSalle1 = [
         idEtage: 0,
         nom: "salle 2",
         state: true,
-        slot: new Date(),
+        slot: listeSlot2,
     },
     {
         id: 2,
         idEtage: 0,
         nom: "salle 3",
         state: false,
-        slot: new Date(),
+        slot: listeSlot3,
     },
 ];
 let listeSalle2 = [
@@ -39,14 +69,14 @@ let listeSalle2 = [
         idEtage: 1,
         nom: "salle 1",
         state: false,
-        slot: new Date(),
+        slot: listeSlot3,
     },
     {
         id: 1,
         idEtage: 1,
         nom: "salle 2",
         state: true,
-        slot: new Date(),
+        slot: listeSlot2,
     },
 ];
 
@@ -56,7 +86,7 @@ let listeSalle3 = [
         idEtage: 2,
         nom: "salle 1",
         state: false,
-        slot: new Date(),
+        slot: listeSlot1,
     },
 ];
 
@@ -66,14 +96,14 @@ let listeSalle4 = [
         idEtage: 3,
         nom: "salle 1",
         state: false,
-        slot: new Date(),
+        slot: listeSlot3,
     },
     {
         id: 1,
         idEtage: 3,
         nom: "salle 2",
         state: false,
-        slot: new Date(''),
+        slot: listeSlot1,
     },
 ];
 
