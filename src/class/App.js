@@ -96,11 +96,22 @@ let data = [
 
 
 class App extends Component {
+    activateToaster() {
+        alert('Synchronisation reussie !');
+    }
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+            <div className="row">
+                <div className="col s3 offset-s3">
+                    <a className="waves-effect waves-light btn">Paramètres</a>
+                </div>
+                <div className="col s3">
+                    <a className="waves-effect waves-light btn" onClick={this.activateToaster}>Synchoniser</a>
+                </div>
+            </div>
         </div>
         <p className="App-intro">
         </p>

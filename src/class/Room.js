@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import moment from 'moment'
 import '../App.css';
 
+// Les tableaux ci dessous constituent la base des données, sachant que notre connection à l'api n'est pas fonctionnelle
+// il faut seulement récuperer les données d'api et d'alimenter les tableaux suivant
+
 let listeSlot1 = [
     {
         start: new moment("2017-06-30 10:00"),
@@ -108,6 +111,9 @@ class Room extends Component {
     activateToaster() {
         alert('mail envoyé !');
     }
+    activateAsk() {
+        alert('Réservation effectuée !')
+    }
     render() {
         let salle = data[this.props.match.params.etageId].salles[this.props.match.params.salleId];
         return (
@@ -169,13 +175,18 @@ class Room extends Component {
                                     <label for="email">Email</label>
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="col l1">
+                                <a className="waves-effect waves-light btn" onClick={this.activateAsk}>Réserver</a>
+                            </div>
+                            <div className="col l10"></div>
+                            <div className="col l1">
+                                <button className="waves-effect waves-light btn" onClick={this.activateToaster}>Demander plus de matériel</button>
+                            </div>
+                        </div>
                         <div>
-                            <a className="waves-effect waves-light btn">Réserver</a>
                         </div>
                     </form>
-                </div>
-                <div className="row">
-                    <button className="waves-effect waves-light btn" onClick={this.activateToaster}>Demander plus de matériel</button>
                 </div>
             </div>
         );
