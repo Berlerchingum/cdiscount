@@ -11,8 +11,8 @@ import Room from './class/Room';
 const RouterMapping = () => (
     <Router>
         <switch>
-            <Route exact path='/' component={App} />
-            <Route path='/salle' component={Room} />
+            <Route exact path="/" component={App} />
+            <Route path='/salle/:id' component={Room} />
         </switch>
     </Router>
 );

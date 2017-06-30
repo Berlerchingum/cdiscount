@@ -1,6 +1,67 @@
 import React, { Component } from 'react';
+import { Link }  from 'react-router-dom';
 import logo from '../logo.svg';
 import '../App.css';
+
+
+let listeSalle1 = [
+    {
+        id: 1,
+        nom: "salle 1",
+        state: false,
+        slot: new Date(),
+    },
+    {
+        id: 2,
+        nom: "salle 2",
+        state: true,
+        slot: new Date(),
+    },
+    {
+        id: 3,
+        nom: "salle 3",
+        state: false,
+        slot: new Date(),
+    },
+];
+let listeSalle2 = [
+    {
+        id: 4,
+        nom: "salle 1",
+        state: false,
+        slot: new Date(),
+    },
+    {
+        id: 5,
+        nom: "salle 2",
+        state: true,
+        slot: new Date(),
+    },
+];
+
+let listeSalle3 = [
+    {
+        id: 6,
+        nom: "salle 1",
+        state: false,
+        slot: new Date(),
+    },
+];
+
+let listeSalle4 = [
+    {
+        id: 7,
+        nom: "salle 1",
+        state: false,
+        slot: new Date(),
+    },
+    {
+        id: 8,
+        nom: "salle 2",
+        state: false,
+        slot: new Date(),
+    },
+];
 
 
 class App extends Component {
@@ -12,11 +73,41 @@ class App extends Component {
         </div>
         <p className="App-intro">
         </p>
-          <List />
+          {/*<List />*/}
+          <ListEtage />
       </div>
     );
   }
 }
+
+class Etage extends Component {
+    constructor(props) {
+        super(props);
+        this.name = props.name;
+        this.listeSalles = [];
+        this.salles = props.listeSalles;
+        this.salles.forEach( (salle) => {
+            this.listeSalles.push(
+                <Salle id={salle.id} state={salle.state} name={salle.nom} slot={salle.slot} />
+            )
+        })
+    }
+
+    render() {
+        return(
+            <div className="row">
+                <div className="card white col s6 offset-s3 offset-m3 m6" style={this.styleEmpty}>
+                    <div className="card-content">
+                        <span className="card-title">{this.name}</span>
+                        <div>{this.listeSalles}</div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+}
+
 
 class Salle extends Component {
     constructor(props){
@@ -24,6 +115,7 @@ class Salle extends Component {
         this.state = {occupied: props.state};
         this.name = props.name;
         this.slot = props.slot;
+        this.id = props.id;
         this.styleEmpty = {
             backgroundColor: 'lightgreen',
         };
@@ -32,40 +124,39 @@ class Salle extends Component {
         };
     }
     render(){
+        let text = "/salle/"+ this.id;
         if(this.state.occupied === false){
             return (
-                <div  className="row">
-                        <div className="card light-green col s6 offset-s3 offset-m3 m6" style={this.styleOccupied}>
-                            <div className="card-content white-text">
-                                <span className="card-title">Card Title</span>
-                                <p>{this.name}</p>
-                                <p>{this.slot.getDate()}</p>
-                            </div>
-                        </div>
-                </div>);
-        }else{
-            return (
-                <div className="row">
-                      <div className="card red col s6 offset-s3 offset-m3 m6" style={this.styleEmpty}>
+                <Link to={text}>
+                    <div className="card hoverable light-green col s12 offset-l1 offset-m1 m5 l3" style={this.styleOccupied}>
                         <div className="card-content white-text">
-                            <span className="card-title">Card Title</span>
                             <p>{this.name}</p>
-                            <p>{this.slot.getDate()}</p>
                         </div>
                     </div>
-            </div>);
+                </Link>
+            );
+        }else{
+            return (
+                <Link to={text} >
+                    <div className="card hoverable red col s12 offset-l1 offset-m1 m5 l3" style={this.styleEmpty}>
+                        <div className="card-content white-text">
+                            <p>{this.name}</p>
+                        </div>
+                    </div>
+                </Link>
+            );
         }
     }
 }
 
-class List extends Component {
+class ListEtage extends Component {
     constructor(props){
         super(props);
         this.liste = [
-            <Salle state={false} name="Premiere salle" slot={new Date()} />,
-            <Salle state={true} name="Deuxieme salle" slot={new Date()} />,
-            <Salle state={false} name="Troisieme salle" slot={new Date()} />,
-            <Salle state={true} name="Quatrieme salle" slot={new Date()} />
+            <Etage name="Premier etage" listeSalles={listeSalle1} />,
+            <Etage name="Deuxieme etage" listeSalles={listeSalle2} />,
+            <Etage name="Troisieme etage" listeSalles={listeSalle3} />,
+            <Etage name="Quatrieme etage" listeSalles={listeSalle4} />
         ]
     };
 
