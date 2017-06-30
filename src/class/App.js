@@ -7,18 +7,21 @@ import '../App.css';
 let listeSalle1 = [
     {
         id: 1,
+        idEtage: 0,
         nom: "salle 1",
         state: false,
         slot: new Date(),
     },
     {
         id: 2,
+        idEtage: 0,
         nom: "salle 2",
         state: true,
         slot: new Date(),
     },
     {
         id: 3,
+        idEtage: 0,
         nom: "salle 3",
         state: false,
         slot: new Date(),
@@ -26,13 +29,15 @@ let listeSalle1 = [
 ];
 let listeSalle2 = [
     {
-        id: 4,
+        id: 0,
+        idEtage: 1,
         nom: "salle 1",
         state: false,
         slot: new Date(),
     },
     {
-        id: 5,
+        id: 1,
+        idEtage: 1,
         nom: "salle 2",
         state: true,
         slot: new Date(),
@@ -41,7 +46,8 @@ let listeSalle2 = [
 
 let listeSalle3 = [
     {
-        id: 6,
+        id: 0,
+        idEtage: 2,
         nom: "salle 1",
         state: false,
         slot: new Date(),
@@ -50,16 +56,41 @@ let listeSalle3 = [
 
 let listeSalle4 = [
     {
-        id: 7,
+        id: 0,
+        idEtage: 3,
         nom: "salle 1",
         state: false,
         slot: new Date(),
     },
     {
-        id: 8,
+        id: 1,
+        idEtage: 3,
         nom: "salle 2",
         state: false,
         slot: new Date(),
+    },
+];
+
+let data = [
+    {
+        id: 0,
+        name: 'Etage 1',
+        salles: listeSalle1
+    },
+    {
+        id: 1,
+        name: 'Etage 2',
+        salles: listeSalle2
+    },
+    {
+        id: 2,
+        name: 'Etage 3',
+        salles: listeSalle3
+    },
+    {
+        id: 3,
+        name: 'Etage 4',
+        salles: listeSalle4
     },
 ];
 
@@ -83,6 +114,7 @@ class App extends Component {
 class Etage extends Component {
     constructor(props) {
         super(props);
+        this.id = props.id;
         this.name = props.name;
         this.listeSalles = [];
         this.salles = props.listeSalles;
@@ -152,12 +184,12 @@ class Salle extends Component {
 class ListEtage extends Component {
     constructor(props){
         super(props);
-        this.liste = [
-            <Etage name="Premier etage" listeSalles={listeSalle1} />,
-            <Etage name="Deuxieme etage" listeSalles={listeSalle2} />,
-            <Etage name="Troisieme etage" listeSalles={listeSalle3} />,
-            <Etage name="Quatrieme etage" listeSalles={listeSalle4} />
-        ]
+        this.liste = [];
+        data.forEach( (etage) => {
+            this.liste.push(<Etage id={etage.id} name={etage.name} listeSalles={etage.salles} />)
+        });
+
+
     };
 
     render() {

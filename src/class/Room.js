@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from '../logo.svg';
 import '../App.css';
 
 
@@ -8,9 +7,7 @@ class Room extends Component {
         return (
             <div className="App">
                 <div className="row">
-                    {/*<div className="App-header">*/}
-                        <SalleDetail state={true} name="Deuxieme salle" slot={new Date()} />
-                    {/*</div>*/}
+                    <SalleDetail state={true} name="Deuxieme salle" slot={new Date()} />
                 </div>
                 <div className="row">
                     <div className="col s1">
